@@ -1,0 +1,7 @@
+c:\users\syedmohib\source\repos\SupergizWinApp\SupergizWinApp\obj\Debug\SupergizWinApp.csprojResolveAssemblyReference.cache
+c:\users\syedmohib\source\repos\SupergizWinApp\SupergizWinApp\obj\Debug\SupergizWinApp.Form1.resources
+c:\users\syedmohib\source\repos\SupergizWinApp\SupergizWinApp\obj\Debug\SupergizWinApp.Form2.resources
+c:\users\syedmohib\source\repos\SupergizWinApp\SupergizWinApp\obj\Debug\SupergizWinApp.Form3.resources
+c:\users\syedmohib\source\repos\SupergizWinApp\SupergizWinApp\obj\Debug\SupergizWinApp.Properties.Resources.resources
+c:\users\syedmohib\source\repos\SupergizWinApp\SupergizWinApp\obj\Debug\SupergizWinApp.csproj.GenerateResource.Cache
+c:\users\syedmohib\source\repos\SupergizWinApp\SupergizWinApp\obj\Debug\SupergizWinApp.csproj.CoreCompileInputs.cache
