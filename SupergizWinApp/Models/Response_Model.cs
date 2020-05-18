@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SupergizWinApp.Models
 {
-    class Response_Model
+    public class Response_Model
     {
         public string type { get; set; }
         public string status { get; set; }

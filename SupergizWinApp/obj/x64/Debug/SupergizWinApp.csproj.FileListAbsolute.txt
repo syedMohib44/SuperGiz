@@ -112,3 +112,6 @@ C:\Users\SyedMohib\source\repos\SupergizWinApp\SupergizWinApp\bin\x64\Debug\Syst
 C:\Users\SyedMohib\source\repos\SupergizWinApp\SupergizWinApp\bin\x64\Debug\System.Xml.XPath.XDocument.dll
 C:\Users\SyedMohib\source\repos\SupergizWinApp\SupergizWinApp\bin\x64\Debug\Json.Net.dll
 C:\Users\SyedMohib\source\repos\SupergizWinApp\SupergizWinApp\obj\x64\Debug\SupergizWinApp.csproj.SupergizWinApp.exe.config
+C:\Users\SyedMohib\source\repos\SupergizWinApp\SupergizWinApp\obj\x64\Debug\SupergizWinApp.Form3.resources
+C:\Users\SyedMohib\source\repos\SupergizWinApp\SupergizWinApp\obj\x64\Debug\SupergizWinApp.Batch.resources
+C:\Users\SyedMohib\source\repos\SupergizWinApp\SupergizWinApp\obj\x64\Debug\SupergizWinApp.Payment.resources

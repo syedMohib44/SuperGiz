@@ -14,17 +14,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using WebSocketSharp;
-using static SupergizWinApp.Form1;
-//using WebSocketSharp;
-
 
 namespace SupergizWinApp
 {
-    public partial class Form2 : Form
+    public partial class Payment : UserControl
     {
-        Form1 init;
         POSLink.PosLink pg = new POSLink.PosLink();
-        POSLink.BatchRequest batch = new POSLink.BatchRequest();
         POSLink.ProcessTransResult result = new POSLink.ProcessTransResult();
         POSLink.CommercialCard m_CommercialCard = null;
         private String m_edcType;
@@ -37,35 +32,14 @@ namespace SupergizWinApp
         CommSetting_Model settingModel;
         WebSocket_Service wss;
 
-        public Form2()
+        public Payment()
         {
-            this.BackgroundImage = Properties.Resources.background;
             InitializeComponent();
             this.tendertype.Text = "CREDIT";
             this.transactiontype.Text = "SALE";
             this.batchBox.Text = "CREDIT";
             this.cardType.Text = "VISA";
-        }      
-       
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            if(commSetting == null)
-                commSetting = new CommSetting_Service();
-
-            settingModel = commSetting.InitCommSetting(pg);
         }
-
-        public void Hide(Form1 init)
-        {
-            this.init = init;
-            init.Hide();
-        }
-
-        public void SetSocket(WebSocket_Service wss)
-        {
-            this.wss = wss;
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             m_edcType = "";
@@ -98,7 +72,7 @@ namespace SupergizWinApp
                 ret = ret * 100;
 
                 retstr = Convert.ToString(ret);
-                paymentRequest.Amount = "$"+retstr;
+                paymentRequest.Amount = "$" + retstr;
             }
             m_transAmount = retstr;
 
@@ -135,7 +109,25 @@ namespace SupergizWinApp
             process2 = new Thread(entry2);
             process2.IsBackground = true;
             process2.Start();
+        }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            pg.CancelTrans();
+        }
+
+        private void Payment_Load(object sender, EventArgs e)
+        {
+            if (commSetting == null)
+                commSetting = new CommSetting_Service();
+
+            settingModel = commSetting.InitCommSetting(pg);
         }
 
         void Run2()
@@ -180,7 +172,7 @@ namespace SupergizWinApp
                 }
             }
         }
-        public class PayData : Data
+        public class PayData //: Data
         {
             public string transactionStatus { get; set; }
         }
@@ -196,14 +188,14 @@ namespace SupergizWinApp
             if (dat == null)
                 dat = new PayData();
             if (resp == null) { }
-                resp = new PayResponse();
+            resp = new PayResponse();
 
             result = pg.ProcessTrans();
             if (result.Code == POSLink.ProcessTransResultCode.OK)
             {
                 resp.type = "payment-complete";
                 dat.transactionStatus = "success";
-               
+
                 POSLink.PaymentResponse paymentResponse = pg.PaymentResponse;
                 if (paymentResponse != null && paymentResponse.ResultCode != null)
                 {
@@ -227,9 +219,9 @@ namespace SupergizWinApp
                 dat.transactionStatus = "success";
                 MessageBox.Show(result.Msg, "Error Processing Payment", MessageBoxButtons.OK);
             }
-            dat.amount = this.amount.Text;
-            dat.appId = this.appId;
-            dat.webId = this.webId;
+            //dat.amount = this.amount.Text;
+            //dat.appId = this.appId;
+            //dat.webId = this.webId;
             resp.data = dat;
             //init.SendResponse(resp);
             //this.Focus();
@@ -291,43 +283,6 @@ namespace SupergizWinApp
         public void SetAmount(string amount)
         {
             this.amount.Text = amount;
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            init.Show();
-            this.Hide();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            pg.CancelTrans();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            //GB_Batch_Response.Visible = false;  // Hide the Response group, only show it when there is valid response
-            batch.EDCType = batch.ParseEDCType(transactiontype.Text);
-
-            batch.CardType = batch.ParseCardType(cardType.Text);
-
-            batch.PaymentType = batch.ParsePaymentType(transactiontype.Text);
-
-            batch.TransType = batch.ParseTransType(batchBox.Text);
-            batch.RefNum = refNum.Text;
-            pg.BatchRequest = batch;
-            result = pg.ProcessTrans();
-
-
-            if(result.Code == POSLink.ProcessTransResultCode.OK)
-            {
-                POSLink.BatchResponse batchResponse = pg.BatchResponse;
-                response.Text = "ResultCode: " + batchResponse.ResultCode + "\nMessage:" + batchResponse.Message + "\nTimestamp: " + batchResponse.Timestamp + "\nResult: " + batchResponse.ResultTxt;
-            }            
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

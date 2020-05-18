@@ -53,13 +53,35 @@ namespace SupergizWinApp
             }
             InitializeComponent();
         }
+
+        private delegate void disableButton();
+
+        private void ClientConnected()
+        {
+            while (true)
+            {
+                if (wss.GetClient() == null)
+                {
+                    if (button1.InvokeRequired)
+                    {
+                        button1.Invoke(new MethodInvoker(delegate { button1.Enabled = false; }));
+                    }
+                }
+                else
+                {
+                    button1.Invoke(new MethodInvoker(delegate { button1.Enabled = true; }));
+                    t.Abort();
+                    return;
+                }
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Login_Model login = new Login_Model(username.Text, password.Text);
             Login_Service loginService = new Login_Service();
-            string token = loginService.Login(wss.GetConnection(), login);
+            string token = loginService.Login(login);
             Response_Model loginResponse = JsonConvert.DeserializeObject<Response_Model>(loginService.GetAppId(token));
-
 
             CommSetting_Model commSetting_Model = new CommSetting_Model(password.Text, "115200", loginResponse.data.appName);
             POSLink.PosLink cg = new POSLink.PosLink();
@@ -192,8 +214,12 @@ namespace SupergizWinApp
             //}
             ini.Close();
             fs.Close();
+            t = new Thread(ClientConnected);
+            t.IsBackground = true;
+            t.Start();
+            Thread.Sleep(1000);
         }
-      
+
         private void button2_Click(object sender, EventArgs e)
         {                     
             payment.Show();

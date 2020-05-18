@@ -1,13 +1,15 @@
-﻿namespace SupergizWinApp
+﻿using System;
+
+namespace SupergizWinApp
 {
-    partial class Form2
+    partial class Payment
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,10 +22,10 @@
             base.Dispose(disposing);
         }
 
-        #region Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -120,7 +122,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(955, 600);
             this.panel1.TabIndex = 134;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // cardType
             // 
@@ -557,7 +558,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(953, 739);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form2";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

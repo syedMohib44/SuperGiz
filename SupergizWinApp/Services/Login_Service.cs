@@ -13,7 +13,7 @@ namespace SupergizWinApp.Services
 {
     class Login_Service
     {
-        public string Login(WebSocket ws, Login_Model login)
+        public string Login(Login_Model login)
         {
             string responseFromServer = "";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("/login"); //works on http and not on https

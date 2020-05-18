@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SupergizWinApp.Models
 {
-    class Data_Model
+    public class Data_Model
     {
         public string webId { get; private set; }
         public string appName { get; private set; }
